@@ -11,3 +11,4 @@ class PdfState(StatesGroup):
   datetime_sample_collection = State()
   datetime_result_report = State()
   datetime_registration = State()
+  confirmation = State()

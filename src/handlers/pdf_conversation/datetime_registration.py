@@ -1,25 +1,30 @@
+from src.states import PdfState
 from .validators import date_validator
+from ..keyboard import update_keyboard
 
 from pdf import PdfMaker
-from asyncio import create_task
+from asyncio import gather
 
 from datetime import datetime
 from aiogram.dispatcher import FSMContext
 
 from aiogram.types import (
   Message,
-  ReplyKeyboardRemove
+  KeyboardButton,
+  ReplyKeyboardMarkup
 )
 
 
 @date_validator('%Y.%m.%d', 'Задайте datetime_registration (Г.М.Д)\n2021.12.31', True)
 async def datetime_registration(message: Message, state: FSMContext, date: datetime) -> None:
-  create_task(message.answer('Отправка...'))
 
   async with state.proxy() as data:
     data['datetime_registration'] = date
 
-    async with PdfMaker(**data.as_dict()) as file:
-      await message.answer_document(file, reply_markup=ReplyKeyboardRemove())
+    response_text = 'Изменить данные:\n'
+    response_text += '\n'.join(f'{key}: <code>{str(value)}</code>' for key, value in data.as_dict().items())
 
-  await state.finish()
+  await gather(*[
+    PdfState.next(),
+    message.answer(response_text, parse_mode='HTML', reply_markup=update_keyboard())
+  ])

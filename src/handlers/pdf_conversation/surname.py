@@ -1,5 +1,6 @@
 from src.states import PdfState
 from src.utils import translit_to_english
+from ..keyboard import sex_keyboard
 
 from asyncio import gather
 from aiogram.dispatcher import FSMContext
@@ -20,12 +21,7 @@ async def surname(message: Message, state: FSMContext) -> None:
       'en': translit_to_english(message_text)
     }
 
-  buttons = [
-    [KeyboardButton('Мужской'), KeyboardButton('Женский')],
-    [KeyboardButton('Отменить')]
-  ]; keyboard = ReplyKeyboardMarkup(buttons, resize_keyboard=True)
-
   await gather(*[
     PdfState.next(),
-    message.answer('Выберете Пол', reply_markup=keyboard)
+    message.answer('Выберете Пол', reply_markup=sex_keyboard())
   ])

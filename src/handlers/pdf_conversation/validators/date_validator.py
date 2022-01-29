@@ -1,3 +1,5 @@
+from .validate_date import validate_date
+
 from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 
@@ -16,9 +18,7 @@ def date_validator(date_format: str, error_message: str, now_possible: bool = Fa
         date = datetime.now()
       else:
 
-        try:
-          date = datetime.strptime(message_text, date_format)
-        except ValueError:
+        if not (date := validate_date(message_text, date_format)):
           return await message.answer(error_message)
 
       return await function(message, state, date)

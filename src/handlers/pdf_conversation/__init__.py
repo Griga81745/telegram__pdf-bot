@@ -9,6 +9,7 @@ from .datetime_creation import datetime_creation
 from .datetime_sample_collection import datetime_sample_collection
 from .datetime_result_report import datetime_result_report
 from .datetime_registration import datetime_registration
+from .confirmation import confirmation
 
 from src.states import PdfState
 
@@ -28,6 +29,7 @@ def register_pdf_conversation_handlers(dispatcher: Dispatcher) -> None:
   dispatcher.register_message_handler(datetime_sample_collection, state=PdfState.datetime_sample_collection)
   dispatcher.register_message_handler(datetime_result_report, state=PdfState.datetime_result_report)
   dispatcher.register_message_handler(datetime_registration, state=PdfState.datetime_registration)
+  dispatcher.register_message_handler(confirmation, state=PdfState.confirmation)
 
 
 __all__ = ('register_pdf_conversation_handlers',)
