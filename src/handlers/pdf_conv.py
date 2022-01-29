@@ -39,7 +39,6 @@ async def pdf_cancel(message: Message, state: FSMContext) -> None:
 async def pdf_process_name(message: Message, state: FSMContext) -> None:
 
   async with state.proxy() as data:
-    print(translit_to_english(message.text))
     data['name'] = {
       'ru': message.text,
       'en': translit_to_english(message.text)
