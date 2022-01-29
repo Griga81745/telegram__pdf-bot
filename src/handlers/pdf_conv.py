@@ -121,7 +121,7 @@ async def process_datetime_creation(message: Message, state: FSMContext) -> None
   else:
 
     try:
-      date = datetime.strptime(message.text, '%Y.%m.%d %H:%M-%S')
+      date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
       await message.answer('Задайте datetime_creation (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
       return
@@ -140,7 +140,7 @@ async def process_datetime_sample_collection(message: Message, state: FSMContext
   else:
 
     try:
-      date = datetime.strptime(message.text, '%Y.%m.%d %H:%M-%S')
+      date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
       await message.answer('Задайте datetime_sample_collection (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
       return
@@ -159,7 +159,7 @@ async def process_datetime_result_report(message: Message, state: FSMContext):
   else:
 
     try:
-      date = datetime.strptime(message.text, '%Y.%m.%d %H:%M-%S')
+      date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
       await message.answer('Задайте datetime_result_report (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
       return
@@ -178,7 +178,7 @@ async def process_datetime_registration(message: Message, state: FSMContext):
   else:
 
     try:
-      date = datetime.strptime(message.text, '%Y.%m.%d %H:%M-%S')
+      date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
       await message.answer('Задайте datetime_registration (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
       return
