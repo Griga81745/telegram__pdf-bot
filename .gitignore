@@ -115,3 +115,4 @@ dmypy.json
 env.sh
 .DS_Store
 *.pdf
+results/

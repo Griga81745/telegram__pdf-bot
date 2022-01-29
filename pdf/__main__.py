@@ -4,8 +4,6 @@ import asyncio
 
 async def main() -> None:
   maker = PdfMaker(
-    1,
-    'Оплата',
     'Сара',
     'Лайтборн',
     'Женский',
@@ -19,8 +17,7 @@ async def main() -> None:
   )
 
   async with maker as file:
-    print(file.filepath)
-    input()
+    print(file)
 
 
 if __name__ == '__main__':

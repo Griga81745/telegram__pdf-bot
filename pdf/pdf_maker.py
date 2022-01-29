@@ -1,4 +1,3 @@
-from .pdf_file import PdfFile
 from .sync_to_async import sync_to_async
 
 from .random_filename import random_filename
@@ -6,6 +5,7 @@ from .image_to_base64 import image_to_base64
 
 import os
 import pdfkit
+from random import randint
 
 from typing import Any
 from jinja2 import Template
@@ -17,8 +17,6 @@ class PdfMaker:
 
   def __init__(
     self,
-    document_number: int,
-    operation: str,
     name: str,
     surname: str,
     sex: str,
@@ -28,11 +26,12 @@ class PdfMaker:
     datetime_sample_collection: str,
     datetime_result_report: str,
     datetime_registration: str,
+    operation: str = 'Оплата',
     watermark: bool = True,
   ) -> None:
 
     self.data = {
-      'document_number': document_number,
+      'document_number': randint(1, 99),
       'operation': operation,
       'name': name,
       'surname': surname,
@@ -68,10 +67,12 @@ class PdfMaker:
   def __setitem__(self, key: Any, value: Any) -> None:
     self.data[key] = value
 
-  async def __aenter__(self) -> PdfFile:
+  async def __aenter__(self) -> bytes:
     result_path = await self.__make_pdf()
-    self.file = PdfFile(result_path)
-    return self.file
+    self.file_path = result_path
+    self.file_object = open(result_path, 'rb')
+    return self.file_object
 
   async def __aexit__(self, *args) -> None:
-    self.file.remove()
+    self.file_object.close()
+    os.remove(self.file_path)
