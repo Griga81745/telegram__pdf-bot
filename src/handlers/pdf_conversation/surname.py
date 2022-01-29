@@ -1,15 +1,11 @@
 from src.states import PdfState
-from src.utils import translit_to_english
 from ..keyboard import sex_keyboard
+from src.utils import translit_to_english
 
 from asyncio import gather
+from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 
-from aiogram.types import (
-  Message,
-  KeyboardButton,
-  ReplyKeyboardMarkup
-)
 
 
 async def surname(message: Message, state: FSMContext) -> None:

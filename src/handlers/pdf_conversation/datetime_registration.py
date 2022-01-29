@@ -2,17 +2,10 @@ from src.states import PdfState
 from .validators import date_validator
 from ..keyboard import update_keyboard
 
-from pdf import PdfMaker
 from asyncio import gather
-
 from datetime import datetime
+from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
-
-from aiogram.types import (
-  Message,
-  KeyboardButton,
-  ReplyKeyboardMarkup
-)
 
 
 @date_validator('%Y.%m.%d', 'Задайте datetime_registration (Г.М.Д)\n2021.12.31', True)

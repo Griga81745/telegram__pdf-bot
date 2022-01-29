@@ -1,13 +1,9 @@
 from src.states import PdfState
+from ..keyboard import cancel_keyboard
 
 from asyncio import gather
+from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
-
-from aiogram.types import (
-  Message,
-  KeyboardButton,
-  ReplyKeyboardMarkup
-)
 
 
 async def sex(message: Message, state: FSMContext) -> None:
@@ -22,9 +18,7 @@ async def sex(message: Message, state: FSMContext) -> None:
       'en': {'Мужской': 'Male', 'Женский': 'Female'}[message_text]
     }
 
-  keyboard = ReplyKeyboardMarkup([[KeyboardButton('Отменить')]], resize_keyboard=True)
-
   await gather(*[
     PdfState.next(),
-    message.answer('Выберете дату рождения', reply_markup=keyboard)
+    message.answer('Выберете дату рождения', reply_markup=cancel_keyboard())
   ])

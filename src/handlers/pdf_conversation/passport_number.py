@@ -1,12 +1,9 @@
 from asyncio import gather
 from src.states import PdfState
+from ..keyboard import date_keyboard
 
+from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
-from aiogram.types import (
-  Message,
-  KeyboardButton,
-  ReplyKeyboardMarkup
-)
 
 
 async def passport_number(message: Message, state: FSMContext) -> None:
@@ -18,12 +15,7 @@ async def passport_number(message: Message, state: FSMContext) -> None:
   async with state.proxy() as data:
     data['passport_number'] = message_text
 
-  buttons = [
-    [KeyboardButton('Сейчас')],
-    [KeyboardButton('Отменить')]
-  ]; keyboard = ReplyKeyboardMarkup(buttons, resize_keyboard=True)
-
   await gather(
     PdfState.next(),
-    message.answer('Задайте datetime_creation (Г.М.Д)\n2021.12.31', reply_markup=keyboard)
+    message.answer('Задайте datetime_creation (Г.М.Д)\n2021.12.31', reply_markup=date_keyboard())
   )
