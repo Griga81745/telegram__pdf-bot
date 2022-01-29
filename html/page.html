@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+		}
+		body{
+			font-family: sans-serif;
+			letter-spacing: 0.3mm;
+		}
+		.hr{
+			height: 1px;
+			background: black;
+			border: none;
+		}
+			.page{
+				page-break-after: always;
+				page-break-before: always;
+				-webkit-region-break-after:always ;
+			}
+	</style>
+
+	<div class="page">
+		<div style="
+			display: -webkit-box;
+			display: flex;
+			-webkit-box-pack: justify;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		">
+			<div style="width: 400px;">
+				<small>
+					<small>
+						<small>
+							<div style="display: flex ;display: -webkit-box;">
+								<div>
+									<img style="height: 40px;" src="data:;base64,{{ images('./images/helix.png') }}">
+								</div>
+								<div style="width: 300px;margin-left:15px;">
+									<div style="margin-bottom: 0.5em;">
+										<b>Лабораторная служба Хеликс</b><br>
+										Контакт центр: 8 800 700 03 03 <br>
+										Информация в интернете: www.helix.ru
+									</div>
+									<div style="margin-bottom: 0.5em;">
+										Лицензия: № ЛО-23-01-014905 от 10.11.2020г.
+									</div>
+									<div>
+										Код в реестре внешнего контроля качества:<br>
+										EQAS: 8659; RIQAS: 272731; ФСВОК: 5871 
+									</div>
+								</div>
+							</div>
+						</small>
+					</small>
+				</small>
+			</div>
+			<div style="width: 350px; text-align: right;">
+				<small>
+					<small>
+						<small>
+							<div>Хеликс - единственная лаборатория в СНГ, сертифицированная по международным стандартам качества:</div>
+							<div>
+								<img style="height: 70px;" src="data:;base64,{{ images('./images/logos.png') }}">
+							</div>
+						</small>
+					</small>
+				</small>
+			</div>
+		</div>
+		<div style="display: -webkit-box; -webkit-box-pack: justify">
+			<div style="width: 70%;">
+				<small>
+					<div style="margin-bottom: 10px;">
+						<b>ЗАКАЗ №:</b> 75348-F3565-00005375
+					</div>
+					<div style="margin-bottom: 10px;">
+						<b>ЗАРЕГИСТРИРОВАН:</b> {{data['datetime_registration']}}*
+					</div>
+					<div style="margin-bottom: 10px;">
+						<b>ЗАКАЗЧИК:</b> ООО "МедОрбита"
+					</div>
+				</small>
+			</div>
+			<div style="height: 80px;">
+				<img style="height: 80px;" src="data:;base64,{{ images('./images/qr.png') }}">
+			</div>
+		</div>
+		<div style="
+			display: flex;
+			display: -webkit-box;
+			-webkit-box-align: center;
+			-webkit-box-pack: justify;
+		">
+			<small style="display: block;">
+				<div>
+					<table style="width: 110%;">
+						<tr>
+							<td rowspan="11" style="padding-right: 20px;">
+								<b style="margin-bottom: 50px;display: block;">ПАЦИЕНТ:</b>
+							</td>
+							<td colspan="2">
+								<b>
+									Место взятия биоматериала: 
+								</b>
+								г. Воронеж, ул. Пушкинская, 11
+							</td>
+						</tr>
+						<tr>
+							<td><b>Договор:</b></td>
+							<td>{{data['operation']}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>Фамилия:</b></td>
+							<td>{{data['surname']|upper}}</td>
+						</tr>
+						<tr>
+							<td><b>Имя:</b></td>
+							<td>{{data['name']|upper}}</td>
+						</tr>
+						<tr>
+							<td><b>Пол:</b></td>
+							<td>{{data['sex']}}</td>
+						</tr>
+						<tr>
+							<td><b>Возраст:</b></td>
+							<td>{{data['date_of_birth']}} (30 лет)</td>
+						</tr>
+						<tr>
+							<td><b>Документ:</b></td>
+							<td>№ 75 28527{{data['document_number']}}</td>
+						</tr>
+						<tr>
+							<td><b>Адрес:</b></td>
+							<td>Г. Воронеж, ул. Ленина, д. 43, кв. 119</td>
+						</tr>
+					</table>
+				</div>
+				
+			</small>
+			<div style="
+				width: 300px;
+				padding: 8px;
+				border: 1.5px solid green;
+				text-align: center;
+			">
+				<div>
+					<small>
+						Если у вас или у вашего лечащего врача возникли вопросы по результатам анализов, свяжитесь с врачом лаборатории по
+						<b>тел. 8 800 222 48 38</b> (звонки бесплатны из любого региона РФ)
+					</small>
+				</div>
+			</div>
+		</div>
+		<div>
+			<small>
+				<table style="width: 100%;">
+					<tr>
+						<td>
+							<b>Образец №:</b>
+						</td>
+						<td>
+							8462148230
+						</td>
+						<td>
+							<b>Дата и время взятия образца:</b>
+						</td>
+						<td>
+							{{data['datetime_sample_collection']}} *
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b>Вид материала:</b>
+						</td>
+						<td>Мазок из ротоглотки и носоглотки</td>
+						<td>
+							<b>Валидация (врач):</b>
+						</td>
+						<td>
+							{{data['datetime_result_report']}} *
+						</td>
+					</tr>
+				</table>
+			</small>
+			<div style="margin-top: 10px;">
+				<small>
+					<small>
+						<small>
+							* - Время указано по часовому поясу GMT+3 (Москва)
+						</small>
+					</small>
+				</small>
+			</div>
+		</div>
+		<hr class="hr">
+		<div>
+			<table style="width: 100%;">
+				<tr>
+					<td style="width: 50%;">
+						<small>
+							<small>
+								<b>
+									Название/Показатель
+								</b>
+							</small>
+						</small>
+					</rd>
+					<td style="width: 50%;">
+						<small>
+							<small>
+								<b>
+									Результат
+								</b>
+							</small>
+						</small>
+					</rd>
+				</tr>
+			</table>
+			<div>
+				<b>Coronavirus SARS-CoV-2, РНК</b>
+			</div>
+			<div style="margin-left: 5px; margin-bottom: 5px;">
+				<small>
+					<small>
+						<span>Метод и оборудование: Real-Time ПЦР с обратной транскрипцией.</span>
+					</small>
+				</small>
+			</div>
+			<table style="padding-left: 5px;width: 100%;background: rgba(0,0,0,0.1);">
+				<tr>
+					<td style="width: 50%;">РНК Coronavirus SARS-CoV-2</td>
+					<td style="width: 50%;">ОТРИЦАТЕЛЬНЫЙ</td>
+				</tr>
+			</table>
+		</div>
+		<div style="margin-top: 20px;">
+			<small>
+				<div>
+					<b>Комментарий:</b> Внимание! Отрицательный результат лабораторного исследования на коронавирус СОМ-19 не отменяет
+					карантинных мер, осли они были рекомендованы Роспотребнадзором. Для получения консультации по карантинным мерам
+					обратитесь, пожалуйста, в Единый консультационный центр Роспотребнадзора по тел. 8 800 555 49 43.
+				</div><br>
+				<div>
+					<b>Если вы прибыли в Россию из другой страны: </b> в соответствии с Постановлением Главного государственного санитарного врача
+					Российской Федерации от 27.07.2020 № 22 загрузите на портал Госуслуг (https://www.gosuslugi.ru/) ваш бланк результата теста на
+					COVID-19. Тест допжен быть сдан и загружен на Госуслуги в течение 3 календарных дней с момента возвращения в Россию. До момента получения результата теста вам необходимо соблюдать режим самоизоляции по месту жительства
+				</div><br>
+				<div>
+					Все рекомендации указаны в соответствии с Письмом Роспотребнадзора ст 18.03.2020 № 02/4457-2020-27 «06
+					организации работы по диагностике COVID-19» и Приложением к данному письму в виде «Инструкции об
+
+					организации работы по диагностике новой коронавирусной инфекции». Результаты исследований на коронавирус:
+					(С0\0-19 в обязательном порядке передаются в территориальный орган Роспотребнадзора.
+				</div><br>
+				<div>
+					<b>
+						000 «НПФ ХЕЛИКС» является референсным центром по верификации результатов исследований
+						на коронавирус COVID-19 согласно Решению Управления Роспотребнадзора от 28.04.2020.
+					</b>
+				</div>	
+			</small>
+		</div>
+		<div style="display: -webkit-box; -webkit-box-pack: justify; -webkit-box-align: center; height: 450px;">
+			<div style="width: 50%;">
+				<span>
+					<small>
+						<b>Отчёт создан: {{data['datetime_creation']}} *</b>
+					</small>
+				</span>
+			</div>
+			<img style="height: 240px;" src="data:;base64,{{ images('./images/hand.png') }}">
+		</div>
+		<div style="position: fixed; bottom:0px;">
+			<div style="text-align:right">Страница 1 из 1</div>
+			<hr style="height: 2px;background: green; border: none;">
+			<small>
+				<small>
+					Загрузите результаты заказа в ваш личный кабинет в приложении «Хеликс Клиент» для 
+					<b style="color:blue">IOS</b> и <b style="color: blue">Android</b> и контролируйте ваши показатели в динамике, отслеживайте статусы заказов,
+					создавайте архив результатов для себя и членов своей семьи.
+				</small>
+			</small>
+		</div>
+		
+	</div>
+	<div class="page">
+		<div style="
+			display: -webkit-box;
+			display: flex;
+			-webkit-box-pack: justify;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		">
+			<div style="width: 300px;">
+				<small>
+					<small>
+						<small>
+							<div style="display: flex ;display: -webkit-box;">
+								<div>
+									<img style="height: 40px;" src="data:;base64,{{ images('./images/helix.png') }}">
+								</div>
+								<div style="margin-left:15px;">
+									<div style="margin-bottom: 0.5em;">
+										<b>Лабораторная служба Хеликс</b><br>
+										Контакт центр: 8 800 700 03 03 <br>
+										Информация в интернете: www.helix.ru
+									</div>
+									<div style="margin-bottom: 0.5em;">
+										Лицензия: № ЛО-23-01-014905 от 10.11.2020 г.
+									</div>
+									<div>
+										Код в реестре внешнего контроля качества:<br>
+										EQAS: 8659; RIQAS: 272731; ФСВОК: 5871 
+									</div>
+								</div>
+							</div>
+						</small>
+					</small>
+				</small>
+			</div>
+			<div style="width: 350px; text-align: right;">
+				<small>
+					<small>
+						<small>
+							<div>Хеликс - единственная лаборатория в СНГ, сертифицированная по международным стандартам качества:</div>
+							<div>
+								<img style="height: 70px;" src="data:;base64,{{ images('./images/logos.png') }}">
+							</div>
+						</small>
+					</small>
+				</small>
+			</div>
+		</div>
+		<hr>
+		<center style="margin:50px 0">
+			<b>
+				<span style="font-size:50px">
+					CERTIFICATE
+				</span> <br>
+				<small style="font-size:24px;line-height: 20px;">of SARS-CoV-2 (COVID-19) testing</small>
+			</b>
+		</center>
+		<div style="padding: 20px;background: rgba(0,0,0,0.1); margin-bottom: 20px;">
+			<div>
+				<b>Name:</b>
+				{{data['name']}} {{data['surname']}}
+			</div><br>
+			<div>
+				<b>Sex:</b>
+				{{data['sex']}}
+			</div><br>
+			<div>
+				<b>Date of birth:</b>
+				{{data['date_of_birth']}}
+			</div><br>
+			<div>
+				<b>Passport number:</b>
+				{{data['passport_number']}}
+			</div>
+		</div>
+		<div>
+			<table>
+				<tr style="font-weight: bold;color: white;background: gray; text-align: center;">
+					<td style="padding: 20px;">Test Name</td>
+					<td style="padding: 20px;">Method and Equipment</td>
+					<td style="padding: 20px;">Date and time of Sample collection</td>
+					<td style="padding: 20px;">Date and time of result report</td>
+					<td style="padding: 20px;">Result</td>
+				</tr>
+				<tr style="background: rgba(0,0,0,0.1); text-align: center;">
+					<td style="padding: 20px;">Coronavirus COVID-19 (SARS-CoV-2,RNA)</td>
+					<td style="padding: 20px;">Real-time RT-PCR; Amplification: DTprime (DT-96), DNA-Technology</td>
+					<td style="padding: 20px;">{{data['datetime_sample_collection']}} *</td>
+					<td style="padding: 20px;">{{data['datetime_result_report']}} *</td>
+					<td style="padding: 20px;">Negative</td>
+				</tr>
+				<tr style="background: rgba(0,0,0,0.1);">
+					<td style="padding: 10px;" colspan="5">Sample type: oropharyngeal swab, nasopharyngeal swab</td>
+				</tr>
+			</table>
+			<small style="margin: 15px; display: block;">
+				<span>* The time is indicated according to the time zone GMT+3 (Moscow)</span>
+			</small>
+		</div>
+		<div>This test was performed using a test system by DNA-Technology (Russia) (sensivity > 97%, specifity > 98%) </div>
+		<div style="margin:15px 0px;display: flex;color: gray;">«Helix» is a reference laboratory of coronavirus (COVID-19) testing results, according to the Decision of Rospotrebnadzor Directorate of 2020.04.28</div>
+		<div style="margin-top: 40px;display: -webkit-box; -webkit-box-pack:justify;">
+			<div style="width: 50%;">
+				<div>
+					<img style="height:130px" src="data:;base64,{{ images('./images/qr.png') }}">
+				</div>
+				<div style="margin-top: 20px;">
+					<span style="width: max-content;">Scan the QR code to verify the certificate.</span>
+				</div>
+			</div>
+			<div>
+				<img style="height: 230px;" src="data:;base64,{{ images('./images/hand2.png') }}">
+				<div>
+					<span>Laboratory director: <br>I.I.Skibo</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if watermark %}
+		<img style="position: fixed;height: 100%; width: 100%;top:0px" src="data:;base64,{{ images('./images/watermark.png') }}">
+		<img style="position: fixed;height: 100%; width: 100%;top:100%" src="data:;base64,{{ images('./images/watermark.png') }}">
+	{% endif %}
+</body>
+</html>
