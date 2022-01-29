@@ -1,8 +1,11 @@
 from pdf import PdfMaker
 from .validators import Updates
 
-from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
+from aiogram.types import (
+  Message,
+  ReplyKeyboardRemove
+)
 
 
 async def confirmation(message: Message, state: FSMContext) -> None:
@@ -14,6 +17,6 @@ async def confirmation(message: Message, state: FSMContext) -> None:
     await message.answer('Отправка...')
 
     async with PdfMaker(**data.as_dict()) as file:
-      await message.answer_document(file)
+      await message.answer_document(file, reply_markup=ReplyKeyboardRemove())
 
   await state.finish()
