@@ -1,4 +1,6 @@
 from ..states import PdfState
+from ..utils import translit_to_english
+
 from aiogram.dispatcher import FSMContext
 
 from pdf import PdfMaker
@@ -37,7 +39,11 @@ async def pdf_cancel(message: Message, state: FSMContext) -> None:
 async def pdf_process_name(message: Message, state: FSMContext) -> None:
 
   async with state.proxy() as data:
-    data['name'] = message.text
+    print(translit_to_english(message.text))
+    data['name'] = {
+      'ru': message.text,
+      'en': translit_to_english(message.text)
+    }
 
   await PdfState.next()
   await message.answer('Введите фамилию')
@@ -46,7 +52,10 @@ async def pdf_process_name(message: Message, state: FSMContext) -> None:
 async def pdf_process_surname(message: Message, state: FSMContext) -> None:
 
   async with state.proxy() as data:
-    data['surname'] = message.text.title()
+    data['surname'] = {
+      'ru': message.text,
+      'en': translit_to_english(message.text)
+    }
 
   keyboard = ReplyKeyboardMarkup(
     [
@@ -66,7 +75,10 @@ async def pdf_process_sex(message: Message, state: FSMContext) -> None:
     return
 
   async with state.proxy() as data:
-    data['sex'] = message.text.capitalize()
+    data['sex'] = {
+      'ru': message.text,
+      'en': {'Мужской': 'Male', 'Женский': 'Female'}[message.text]
+    }
 
   keyboard = ReplyKeyboardMarkup(
     [
@@ -111,7 +123,7 @@ async def process_passport_number(message: Message, state: FSMContext) -> None:
   )
 
   await PdfState.next()
-  await message.answer('Задайте datetime_creation (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27', reply_markup=keyboard)
+  await message.answer('Задайте datetime_creation (Г.М.Д)\n2021.12.31', reply_markup=keyboard)
 
 
 async def process_datetime_creation(message: Message, state: FSMContext) -> None:
@@ -123,14 +135,14 @@ async def process_datetime_creation(message: Message, state: FSMContext) -> None
     try:
       date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
-      await message.answer('Задайте datetime_creation (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+      await message.answer('Задайте datetime_creation (Г.М.Д)\n2021.12.31')
       return
 
   async with state.proxy() as data:
     data['datetime_creation'] = date
 
   await PdfState.next()
-  await message.answer('Задайте datetime_sample_collection (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+  await message.answer('Задайте datetime_sample_collection (Г.М.Д)\n2021.12.31')
 
 
 async def process_datetime_sample_collection(message: Message, state: FSMContext):
@@ -142,14 +154,14 @@ async def process_datetime_sample_collection(message: Message, state: FSMContext
     try:
       date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
-      await message.answer('Задайте datetime_sample_collection (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+      await message.answer('Задайте datetime_sample_collection (Г.М.Д)\n2021.12.31')
       return
 
   async with state.proxy() as data:
     data['datetime_sample_collection'] = date
 
   await PdfState.next()
-  await message.answer('Задайте datetime_result_report (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+  await message.answer('Задайте datetime_result_report (Г.М.Д)\n2021.12.31')
 
 
 async def process_datetime_result_report(message: Message, state: FSMContext):
@@ -161,14 +173,14 @@ async def process_datetime_result_report(message: Message, state: FSMContext):
     try:
       date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
-      await message.answer('Задайте datetime_result_report (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+      await message.answer('Задайте datetime_result_report (Г.М.Д)\n2021.12.31')
       return
 
   async with state.proxy() as data:
     data['datetime_result_report'] = date
 
   await PdfState.next()
-  await message.answer('Задайте datetime_registration (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+  await message.answer('Задайте datetime_registration (Г.М.Д)\n2021.12.31')
 
 
 async def process_datetime_registration(message: Message, state: FSMContext):
@@ -180,8 +192,10 @@ async def process_datetime_registration(message: Message, state: FSMContext):
     try:
       date = datetime.strptime(message.text, '%Y.%m.%d')
     except ValueError:
-      await message.answer('Задайте datetime_registration (Г.МЕ.Д Ч:МИ:С)\n2021.12.31 16:09:27')
+      await message.answer('Задайте datetime_registration (Г.М.Д)\n2021.12.31')
       return
+
+  await message.answer('Отправка...')
 
   async with state.proxy() as data:
     data['datetime_registration'] = date

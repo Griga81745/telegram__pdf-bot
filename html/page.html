@@ -130,15 +130,15 @@
 						</tr>
 						<tr>
 							<td><b>Фамилия:</b></td>
-							<td>{{data['surname']|upper}}</td>
+							<td>{{data['surname']['ru']|upper}}</td>
 						</tr>
 						<tr>
 							<td><b>Имя:</b></td>
-							<td>{{data['name']|upper}}</td>
+							<td>{{data['name']['ru']|upper}}</td>
 						</tr>
 						<tr>
 							<td><b>Пол:</b></td>
-							<td>{{data['sex']}}</td>
+							<td>{{data['sex']['ru']}}</td>
 						</tr>
 						<tr>
 							<td><b>Возраст:</b></td>
@@ -362,11 +362,11 @@
 		<div style="padding: 20px;background: rgba(0,0,0,0.1); margin-bottom: 20px;">
 			<div>
 				<b>Name:</b>
-				{{data['name']}} {{data['surname']}}
+				{{data['name']['en']}} {{data['surname']['en']}}
 			</div><br>
 			<div>
 				<b>Sex:</b>
-				{{data['sex']}}
+				{{data['sex']['en']}}
 			</div><br>
 			<div>
 				<b>Date of birth:</b>
