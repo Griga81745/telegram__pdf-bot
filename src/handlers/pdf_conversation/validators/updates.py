@@ -78,7 +78,10 @@ class Updates:
         data['what_to_update'] = 'sex'
         return await message.answer('Вы можете выбрать между Мужской и Женский')
 
-      data['sex'] = message_text
+      data['sex'] = {
+        'ru': message_text,
+        'en': {'Мужской': 'Male', 'Женский': 'Female'}[message_text]
+      }
       await message.answer('Пол обновлен', reply_markup=update_keyboard())
 
   async def label_date_of_birth(self) -> None:
