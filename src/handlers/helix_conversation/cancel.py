@@ -1,6 +1,8 @@
+from ..keyboards import start_keyboard
+
 from asyncio import gather
+from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message, ReplyKeyboardRemove
 
 
 async def cancel(message: Message, state: FSMContext) -> None:
@@ -10,5 +12,5 @@ async def cancel(message: Message, state: FSMContext) -> None:
 
   await gather(*[
     state.finish(),
-    message.answer('Отановлено', reply_markup=ReplyKeyboardRemove())
+    message.answer('Отановлено', reply_markup=start_keyboard())
   ])
