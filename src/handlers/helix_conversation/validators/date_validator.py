@@ -14,7 +14,7 @@ def date_validator(date_format: str, error_message: str, now_possible: bool = Fa
     async def wrapper(message: Message, state: FSMContext) -> Any:
       message_text = message.text.strip()
 
-      if now_possible:
+      if now_possible and message_text == 'Сейчас':
         date = datetime.now()
       else:
 
