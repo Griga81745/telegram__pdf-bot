@@ -2,7 +2,7 @@ from .date_validator import validate_date
 from src.utils import translit_to_english
 
 from datetime import datetime
-from src.handlers.keyboard import (
+from src.handlers.keyboards import (
   update_keyboard,
   sex_keyboard,
   date_keyboard

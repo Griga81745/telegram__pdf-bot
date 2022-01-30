@@ -1,6 +1,6 @@
 from asyncio import gather
 from src.states import PdfState
-from ..keyboard import date_keyboard
+from ..keyboards import date_keyboard
 
 from aiogram.types import Message
 from aiogram.dispatcher import FSMContext

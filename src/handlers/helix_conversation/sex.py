@@ -1,5 +1,5 @@
 from src.states import PdfState
-from ..keyboard import cancel_keyboard
+from ..keyboards import cancel_keyboard
 
 from asyncio import gather
 from aiogram.types import Message

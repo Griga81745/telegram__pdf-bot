@@ -1,5 +1,5 @@
 from src.states import PdfState
-from ..keyboard import sex_keyboard
+from ..keyboards import sex_keyboard
 from src.utils import translit_to_english
 
 from asyncio import gather

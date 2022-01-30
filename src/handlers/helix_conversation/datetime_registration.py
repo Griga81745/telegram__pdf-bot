@@ -1,6 +1,6 @@
 from src.states import PdfState
 from .validators import date_validator
-from ..keyboard import update_keyboard
+from ..keyboards import update_keyboard
 
 from asyncio import gather
 from datetime import datetime
