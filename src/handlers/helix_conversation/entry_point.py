@@ -1,9 +1,13 @@
 from src.states import PdfState
 from ..keyboards import cancel_keyboard
 
-from aiogram.types import Message
+from asyncio import gather
+from aiogram.types import CallbackQuery
 
 
-async def entry_point(message: Message) -> None:
-  await PdfState.name.set()
-  await message.answer('Введите имя', reply_markup=cancel_keyboard())
+async def entry_point(callback_query: CallbackQuery) -> None:
+  await gather(*[
+    PdfState.name.set(),
+    callback_query.answer('💚'),
+    callback_query.message.answer('Введите имя', reply_markup=cancel_keyboard())
+  ])

@@ -18,7 +18,8 @@ from aiogram.dispatcher.filters import Text
 
 
 def register_pdf_conversation_handlers(dispatcher: Dispatcher) -> None:
-  dispatcher.register_message_handler(entry_point, commands=['pdf'])
+  dispatcher.register_callback_query_handler(entry_point, lambda c: c.data == 'c_helix')
+  # dispatcher.register_message_handler(entry_point, commands=['pdf'])
   dispatcher.register_message_handler(cancel, Text(equals='Отменить'), state='*')
   dispatcher.register_message_handler(name, state=PdfState.name)
   dispatcher.register_message_handler(surname, state=PdfState.surname)
