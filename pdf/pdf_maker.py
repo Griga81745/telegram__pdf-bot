@@ -11,7 +11,6 @@ from typing import Any
 from jinja2 import Template
 
 
-
 class PdfMaker:
   html_path = 'html/page.html'
 
