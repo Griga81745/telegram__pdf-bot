@@ -3,7 +3,6 @@ from ..handlers import (
   register_pdf_conversation_handlers
 )
 
-from ..states import PdfState
 from .telegram_bot import telegram_bot
 
 from aiogram import Dispatcher
