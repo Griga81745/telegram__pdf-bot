@@ -6,6 +6,6 @@ from aiogram.types import (
 
 def start_keyboard() -> ReplyKeyboardMarkup:
   buttons = [
-      [KeyboardButton('Сертификаты')],
-      [KeyboardButton('Оферта')]
+      [KeyboardButton('Сертификаты 📄')],
+      [KeyboardButton('Оферта 📌')]
   ]; return ReplyKeyboardMarkup(buttons, resize_keyboard=True)

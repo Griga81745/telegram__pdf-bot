@@ -20,5 +20,5 @@ async def sex(message: Message, state: FSMContext) -> None:
 
   await gather(*[
     PdfState.next(),
-    message.answer('Выберете дату рождения', reply_markup=cancel_keyboard())
+    message.answer('Выберете дату рождения (ГГГГ.ММ.ДД)', reply_markup=cancel_keyboard())
   ])

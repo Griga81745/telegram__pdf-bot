@@ -8,7 +8,7 @@ from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 
 
-@date_validator('%Y.%m.%d', 'Задайте datetime_sample_collection (Г.М.Д)\n2021.12.29', True)
+@date_validator('%Y.%m.%d', 'Задайте дату взятия образца (ГГГГ.ММ.ДД)\nСегодня: 2021.12.31', True)
 async def datetime_sample_collection(message: Message, state: FSMContext, date: datetime) -> None:
 
   async with state.proxy() as data:
@@ -16,5 +16,5 @@ async def datetime_sample_collection(message: Message, state: FSMContext, date: 
 
   await gather(*[
     PdfState.next(),
-    message.answer('Задайте datetime_result_report (Г.М.Д)\n2021.12.31')
+    message.answer('Задайте дату валидации (ГГГГ.ММ.ДД)\nСейчас: 2021.12.31')
   ])

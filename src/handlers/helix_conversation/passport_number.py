@@ -17,5 +17,5 @@ async def passport_number(message: Message, state: FSMContext) -> None:
 
   await gather(
     PdfState.next(),
-    message.answer('Задайте datetime_creation (Г.М.Д)\n2021.12.31', reply_markup=date_keyboard())
+    message.answer('Задайте дату создания отчёта (ГГГГ.ММ.ДД)\nСегодня:2021.12.31', reply_markup=date_keyboard())
   )
