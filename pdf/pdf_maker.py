@@ -87,7 +87,7 @@ class PdfMaker:
     params = '&'.join(f'{field}={self.data[field]}' for field in fields)
     final_url = self.qr_url.format(params=params)
 
-    qr = qrcode.make(final_url)
+    qr = qrcode.make(final_url, box_size=25)
     qr.save(result := BytesIO())
     result = BytesIO(result.getvalue())
 
