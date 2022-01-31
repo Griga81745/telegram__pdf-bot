@@ -19,10 +19,10 @@ class Updates:
     'пол': 'sex',
     'дата рождения': 'date_of_birth',
     'серия/номер паспорта': 'passport_number',
-    'datetime creation': 'datetime_creation',
-    'datetime collection': 'datetime_sample_collection',
-    'datetime result': 'datetime_result_report',
-    'datetime registration': 'datetime_registration'
+    'дата создания отчёта': 'datetime_creation',
+    'дата взятия образца': 'datetime_sample_collection',
+    'дата валидации': 'datetime_result_report',
+    'дата регистрации': 'datetime_registration'
   }
 
   def __init__(self, message: Message, state: FSMContext) -> None:
@@ -113,7 +113,7 @@ class Updates:
       await message.answer('Данные паспорта обновлены')
 
   async def label_datetime_creation(self) -> None:
-    await self.message.answer('Введите новый date creation', reply_markup=date_keyboard())
+    await self.message.answer('Введите новую дату создания отчёта', reply_markup=date_keyboard())
 
   async def update_datetime_creation(self, message: Message, state: FSMContext) -> None:
     message_text = message.text.strip()
@@ -127,10 +127,10 @@ class Updates:
         return await message.answer('Неверный формат')
 
       data['datetime_creation'] = date
-      await message.answer('datetime created обновлен', reply_markup=update_keyboard())
+      await message.answer('Дата создания отчёта обновлена', reply_markup=update_keyboard())
 
   async def label_datetime_sample_collection(self) -> None:
-    await self.message.answer('Введите новый datetime sample collection', reply_markup=date_keyboard())
+    await self.message.answer('Введите новую дату взятия образца', reply_markup=date_keyboard())
 
   async def update_datetime_sample_collection(self, message: Message, state: FSMContext) -> None:
     message_text = message.text.strip()
@@ -144,10 +144,10 @@ class Updates:
         return await message.answer('Неверный формат')
 
       data['datetime_sample_collection'] = date
-      await message.answer('datetime sample collection обновлен', reply_markup=update_keyboard())
+      await message.answer('Дата взятия образца обновлена', reply_markup=update_keyboard())
 
   async def label_datetime_result_report(self) -> None:
-    await self.message.answer('Введите новый datetime result report', reply_markup=date_keyboard())
+    await self.message.answer('Введите новую дату валидации', reply_markup=date_keyboard())
 
   async def update_datetime_result_report(self, message: Message, state: FSMContext) -> None:
     message_text = message.text.strip()
@@ -161,10 +161,10 @@ class Updates:
         return await message.answer('Неверный формат')
 
       data['datetime_result_report'] = date
-      await message.answer('datetime result report обновлен', reply_markup=update_keyboard())
+      await message.answer('Дата валидации обновлена', reply_markup=update_keyboard())
 
   async def label_datetime_registration(self) -> None:
-    await self.message.answer('Введите новый datetime registration', reply_markup=date_keyboard())
+    await self.message.answer('Введите новую дату регистрации', reply_markup=date_keyboard())
 
   async def update_datetime_registration(self, message: Message, state: FSMContext) -> None:
     message_text = message.text.strip()
@@ -178,4 +178,4 @@ class Updates:
         return await message.answer('Неверный формат')
 
       data['datetime_registration'] = date
-      await message.answer('datetime registration обновлен', reply_markup=update_keyboard())
+      await message.answer('Дата регистрации обновлена', reply_markup=update_keyboard())
