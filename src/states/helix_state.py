@@ -12,3 +12,5 @@ class PdfState(StatesGroup):
   datetime_result_report = State()
   datetime_registration = State()
   confirmation = State()
+  payment = State()
+  confirm_payment = State()
