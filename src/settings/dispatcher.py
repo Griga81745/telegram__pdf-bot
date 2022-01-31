@@ -1,6 +1,7 @@
 from ..handlers import (
   start_help,
   certificates,
+  offer,
   back,
   helix,
   register_pdf_conversation_handlers
@@ -17,6 +18,7 @@ dispatcher = Dispatcher(telegram_bot, storage=storage)
 
 dispatcher.register_message_handler(start_help, commands=['start', 'help'])
 dispatcher.register_message_handler(certificates, Text(equals='Сертификаты 📄'))
+dispatcher.register_message_handler(offer, Text(equals='Оферта 📌'))
 dispatcher.register_message_handler(back, Text(equals='Назад'))
 dispatcher.register_message_handler(helix, Text(equals='Helix'))
 register_pdf_conversation_handlers(dispatcher)
