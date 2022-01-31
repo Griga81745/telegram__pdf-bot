@@ -15,7 +15,8 @@ async def passport_number(message: Message, state: FSMContext) -> None:
   async with state.proxy() as data:
     data['passport_number'] = message_text
 
-  await gather(
-    PdfState.next(),
-    message.answer('Задайте дату создания отчёта (ГГГГ.ММ.ДД)\nСегодня:2021.12.31', reply_markup=date_keyboard())
-  )
+  with open('previews/datetime_creation.jpg', 'rb') as file:
+    await gather(
+      PdfState.next(),
+      message.answer_photo(file, caption='Задайте дату создания отчёта (ГГГГ.ММ.ДД)\nСегодня:2021.12.31', reply_markup=date_keyboard())
+    )

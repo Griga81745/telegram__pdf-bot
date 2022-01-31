@@ -17,7 +17,8 @@ async def surname(message: Message, state: FSMContext) -> None:
       'en': translit_to_english(message_text)
     }
 
-  await gather(*[
-    PdfState.next(),
-    message.answer('Выберете Пол', reply_markup=sex_keyboard())
-  ])
+  with open('previews/personal_info.jpg', 'rb') as file:
+    await gather(*[
+      PdfState.next(),
+      message.answer_photo(file, caption='Выберете Пол', reply_markup=sex_keyboard())
+    ])

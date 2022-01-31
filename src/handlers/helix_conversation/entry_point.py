@@ -6,8 +6,9 @@ from aiogram.types import CallbackQuery
 
 
 async def entry_point(callback_query: CallbackQuery) -> None:
-  await gather(*[
-    PdfState.name.set(),
-    callback_query.answer('💚'),
-    callback_query.message.answer('Введите имя', reply_markup=cancel_keyboard())
-  ])
+  with open('previews/personal_info.jpg', 'rb') as file:
+    await gather(*[
+      PdfState.name.set(),
+      callback_query.answer('💚'),
+      callback_query.message.answer_photo(file, caption='Введите имя', reply_markup=cancel_keyboard())
+    ])

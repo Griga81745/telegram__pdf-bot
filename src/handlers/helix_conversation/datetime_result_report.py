@@ -14,7 +14,8 @@ async def datetime_result_report(message: Message, state: FSMContext, date: date
   async with state.proxy() as data:
     data['datetime_result_report'] = date
 
-  await gather(
-    PdfState.next(),
-    message.answer('Задайте дату регистрации (Г.М.Д)\nСейчас: 2021.12.31')
-  )
+  with open('previews/datetime_registration.jpg', 'rb') as file:
+    await gather(
+      PdfState.next(),
+      message.answer_photo(file, caption='Задайте дату регистрации (Г.М.Д)\nСейчас: 2021.12.31')
+    )

@@ -14,7 +14,8 @@ async def datetime_creation(message: Message, state: FSMContext, date: datetime)
   async with state.proxy() as data:
     data['datetime_creation'] = date
 
-  await gather(
-    PdfState.next(),
-    message.answer('Задайте дату взятия образца (ГГГГ.ММ.ДД)\nСегодня: 2021.12.31')
-  )
+  with open('previews/results_date.jpg', 'rb') as file:
+    await gather(
+      PdfState.next(),
+      message.answer_photo(file, caption='Задайте дату взятия образца (ГГГГ.ММ.ДД)\nСегодня: 2021.12.31')
+    )

@@ -14,7 +14,8 @@ async def datetime_sample_collection(message: Message, state: FSMContext, date: 
   async with state.proxy() as data:
     data['datetime_sample_collection'] = date
 
-  await gather(*[
-    PdfState.next(),
-    message.answer('Задайте дату валидации (ГГГГ.ММ.ДД)\nСейчас: 2021.12.31')
-  ])
+  with open('previews/results_date.jpg', 'rb') as file:
+    await gather(*[
+      PdfState.next(),
+      message.answer_photo(file, caption='Задайте дату валидации (ГГГГ.ММ.ДД)\nСейчас: 2021.12.31')
+    ])
