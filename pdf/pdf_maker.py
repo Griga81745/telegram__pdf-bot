@@ -5,6 +5,10 @@ from .image_to_base64 import image_to_base64
 
 import os
 import pdfkit
+from io import BytesIO
+from base64 import b64encode
+
+import qrcode
 from random import randint
 
 from typing import Any
@@ -12,6 +16,8 @@ from jinja2 import Template
 
 
 class PdfMaker:
+  qr_url = 'http://127.0.0.1?{params}'
+  qr_url_exclude = ('watermark',)
   html_path = 'html/page.html'
 
   def __init__(
@@ -50,7 +56,7 @@ class PdfMaker:
   @sync_to_async
   def __make_pdf(self) -> str:
     template = Template(self.get_html_code(self.html_path))
-    result_html = template.render(data=self.data, images=image_to_base64, watermark=self.data['watermark'])
+    result_html = template.render(data=self.data, images=image_to_base64, watermark=self.data['watermark'], qr_code=self.get_qr_code())
 
     result_path = f'./results/{random_filename()}.pdf'
     pdfkit.from_string(result_html, result_path)
@@ -75,3 +81,14 @@ class PdfMaker:
   async def __aexit__(self, *args) -> None:
     self.file_object.close()
     os.remove(self.file_path)
+
+  def get_qr_code(self) -> str:
+    fields = [field for field in self.data.keys() if not field in self.qr_url_exclude]
+    params = '&'.join(f'{field}={self.data[field]}' for field in fields)
+    final_url = self.qr_url.format(params=params)
+
+    qr = qrcode.make(final_url)
+    qr.save(result := BytesIO())
+    result = BytesIO(result.getvalue())
+
+    return b64encode(result.read()).decode()
