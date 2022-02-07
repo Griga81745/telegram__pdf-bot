@@ -10,11 +10,13 @@ from .datetime_sample_collection import datetime_sample_collection
 from .datetime_result_report import datetime_result_report
 from .datetime_registration import datetime_registration
 from .confirmation import confirmation
+from .promo_code import promo_code
 from .payment import payment
 from .confirm_payment import confirm_payment
 from .pre_checkout_query import pre_checkout_query
 
 from src.states import PdfState
+from src.settings.settings import PROMO_CODE
 
 from aiogram import Dispatcher
 from aiogram.types import ContentType
@@ -34,6 +36,7 @@ def register_pdf_conversation_handlers(dispatcher: Dispatcher) -> None:
   dispatcher.register_message_handler(datetime_result_report, state=PdfState.datetime_result_report)
   dispatcher.register_message_handler(datetime_registration, state=PdfState.datetime_registration)
   dispatcher.register_message_handler(confirmation, state=PdfState.confirmation)
+  dispatcher.register_message_handler(promo_code, Text(equals=PROMO_CODE), state=PdfState.payment)
   dispatcher.register_message_handler(payment, state=PdfState.payment)
   dispatcher.register_message_handler(confirm_payment, content_types=ContentType.SUCCESSFUL_PAYMENT, state=PdfState.confirm_payment)
   dispatcher.register_pre_checkout_query_handler(pre_checkout_query, state=PdfState.confirm_payment)
