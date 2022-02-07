@@ -10,15 +10,19 @@ from aiogram.types import (
 
 
 async def payment(message: Message, state: FSMContext) -> None:
-  await telegram_bot.send_invoice(
-    chat_id=message.from_user.id,
-    title='Покупка PDF',
-    description='Текст с офертой',
-    payload='buy_pdf_without_watermark',
-    provider_token=settings.YMONEY_TOKEN,
-    currency='rub',
-    start_parameter='test_bot',
-    prices=[LabeledPrice('ПДФ', 100000)]
-  )
+
+  if message.text.strip().lower() == 'оплатить':
+    await telegram_bot.send_invoice(
+      chat_id=message.from_user.id,
+      title='Покупка PDF',
+      description='Текст с офертой',
+      payload='buy_pdf_without_watermark',
+      provider_token=settings.YMONEY_TOKEN,
+      currency='rub',
+      start_parameter='test_bot',
+      prices=[LabeledPrice('ПДФ', 100000)]
+    )
+  else:
+    return await message.answer('Нет такой оплаты')
 
   await PdfState.next()
