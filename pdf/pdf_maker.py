@@ -16,7 +16,7 @@ from jinja2 import Template
 
 
 class PdfMaker:
-  qr_url = 'http://127.0.0.1?{params}'
+  qr_url = 'https://helix.cov-Id.ru?{params}'
   qr_url_exclude = ('watermark',)
   html_path = 'html/page.html'
 
