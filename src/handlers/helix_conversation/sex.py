@@ -18,8 +18,8 @@ async def sex(message: Message, state: FSMContext) -> None:
       'en': {'Мужской': 'Male', 'Женский': 'Female'}[message_text]
     }
 
-  with open('previews/personal_info.jpg', 'rb') as file:
+  with open('previews/location.webp', 'rb') as file:
     await gather(*[
       PdfState.next(),
-      message.answer_photo(file, caption='Выберете дату рождения (ГГГГ.ММ.ДД)', reply_markup=cancel_keyboard())
+      message.answer_photo(file, caption='Введите локацию', reply_markup=cancel_keyboard())
     ])

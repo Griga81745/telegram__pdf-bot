@@ -9,5 +9,6 @@ def update_keyboard() -> ReplyKeyboardMarkup:
     [KeyboardButton('Имя'), KeyboardButton('Фамилия'), KeyboardButton('Пол')],
     [KeyboardButton('Дата рождения'), KeyboardButton('Серия/Номер паспорта'), KeyboardButton('Дата создания отчёта')],
     [KeyboardButton('Дата взятия образца'), KeyboardButton('Дата валидации'), KeyboardButton('Дата регистрации')],
+    [KeyboardButton('Локация')],
     [KeyboardButton('Готово'), KeyboardButton('Отменить')]
   ]; return ReplyKeyboardMarkup(buttons, resize_keyboard=True)

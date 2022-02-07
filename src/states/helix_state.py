@@ -5,6 +5,7 @@ class PdfState(StatesGroup):
   name = State()
   surname = State()
   sex = State()
+  location = State()
   date_of_birth = State()
   passport_number = State()
   datetime_creation = State()
