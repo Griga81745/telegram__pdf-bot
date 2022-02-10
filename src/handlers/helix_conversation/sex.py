@@ -21,5 +21,5 @@ async def sex(message: Message, state: FSMContext) -> None:
   with open('previews/location.webp', 'rb') as file:
     await gather(*[
       PdfState.next(),
-      message.answer_photo(file, caption='Введите локацию', reply_markup=cancel_keyboard())
+      message.answer_photo(file, caption='Введите адрес', reply_markup=cancel_keyboard())
     ])

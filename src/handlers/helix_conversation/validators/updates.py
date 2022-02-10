@@ -17,7 +17,7 @@ class Updates:
     'имя': 'name',
     'фамилия': 'surname',
     'пол': 'sex',
-    'локация': 'location',
+    'адрес': 'location',
     'дата рождения': 'date_of_birth',
     'серия/номер паспорта': 'passport_number',
     'дата создания отчёта': 'datetime_creation',
@@ -182,11 +182,11 @@ class Updates:
       await message.answer('Дата регистрации обновлена', reply_markup=update_keyboard())
 
   async def label_location(self) -> None:
-    await self.message.answer('Введите новую локацию')
+    await self.message.answer('Введите новый адрес')
 
   async def update_location(self, message: Message, state: FSMContext) -> None:
 
     async with state.proxy() as data:
       data['location'] = message.text.strip()
 
-    await message.answer('Локация обновлена')
+    await message.answer('Адрес обновлен')

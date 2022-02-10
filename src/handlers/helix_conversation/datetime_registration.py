@@ -19,7 +19,7 @@ async def datetime_registration(message: Message, state: FSMContext, date: datet
       f"Имя:{data['name']['ru']}\n"
       f"Фамилия:{data['surname']['ru']}\n"
       f"Пол: {data['sex']['ru']}\n"
-      f"Локация: {data['location']}\n"
+      f"Адрес: {data['location']}\n"
       f"Номер паспорта: {data['passport_number']}\n"
       f"Дата рождения: {data['date_of_birth']}\n"
       f"Дата регистрации: {data['datetime_registration']}\n"
