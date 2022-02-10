@@ -81,7 +81,7 @@
 						<b>ЗАКАЗ №:</b> 75348-F3565-00005375
 					</div>
 					<div style="margin-bottom: 10px;">
-						<b>ЗАРЕГИСТРИРОВАН:</b> {{data['datetime_registration']}}*
+						<b>ЗАРЕГИСТРИРОВАН:</b> {{data['datetime_registration'].strftime('%d.%m.%Y')}}  15:19:57 *
 					</div>
 					<div style="margin-bottom: 10px;">
 						<b>ЗАКАЗЧИК:</b> ООО "МедОрбита"
@@ -143,15 +143,15 @@
 						</tr>
 						<tr>
 							<td><b>Возраст:</b></td>
-							<td>{{data['date_of_birth']}} (30 лет)</td>
+							<td>{{data['date_of_birth'].strftime('%d.%m.%Y')}} ({{age}} лет)</td>
 						</tr>
 						<tr>
 							<td><b>Документ:</b></td>
-							<td>№ 75 28527{{data['document_number']}}</td>
+							<td>№ {{data['passport_number']}}</td>
 						</tr>
 						<tr>
 							<td><b>Адрес:</b></td>
-							<td>Г. Воронеж, ул. Ленина, д. 43, кв. 119</td>
+							<td>{{data['location']}}</td>
 						</tr>
 					</table>
 				</div>
@@ -179,13 +179,13 @@
 							<b>Образец №:</b>
 						</td>
 						<td>
-							8462148230
+							84621482{{ data['document_number'] }}
 						</td>
 						<td>
 							<b>Дата и время взятия образца:</b>
 						</td>
 						<td>
-							{{data['datetime_sample_collection']}} *
+							{{data['datetime_sample_collection'].strftime('%d.%m.%Y')}} 14:00:21 *
 						</td>
 					</tr>
 					<tr>
@@ -197,7 +197,7 @@
 							<b>Валидация (врач):</b>
 						</td>
 						<td>
-							{{data['datetime_result_report']}} *
+							{{data['datetime_result_report'].strftime('%d.%m.%Y')}} 17:04:12 *
 						</td>
 					</tr>
 				</table>
@@ -256,21 +256,21 @@
 		<div style="margin-top: 20px;">
 			<small>
 				<div>
-					<b>Комментарий:</b> Внимание! Отрицательный результат лабораторного исследования на коронавирус СОМ-19 не отменяет
+					<b>Комментарий:</b> Внимание! Отрицательный результат лабораторного исследования на коронавирус СOVID-19 не отменяет
 					карантинных мер, осли они были рекомендованы Роспотребнадзором. Для получения консультации по карантинным мерам
 					обратитесь, пожалуйста, в Единый консультационный центр Роспотребнадзора по тел. 8 800 555 49 43.
 				</div><br>
 				<div>
-					<b>Если вы прибыли в Россию из другой страны: </b> в соответствии с Постановлением Главного государственного санитарного врача
+					<b>Если вы прибыли в Россию из другой страны: </b> &nbsp;в соответствии с Постановлением Главного государственного санитарного врача
 					Российской Федерации от 27.07.2020 № 22 загрузите на портал Госуслуг (https://www.gosuslugi.ru/) ваш бланк результата теста на
 					COVID-19. Тест допжен быть сдан и загружен на Госуслуги в течение 3 календарных дней с момента возвращения в Россию. До момента получения результата теста вам необходимо соблюдать режим самоизоляции по месту жительства
 				</div><br>
 				<div>
-					Все рекомендации указаны в соответствии с Письмом Роспотребнадзора ст 18.03.2020 № 02/4457-2020-27 «06
+					Все рекомендации указаны в соответствии с Письмом Роспотребнадзора ст 18.03.2020 № 02/4457-2020-27 «об
 					организации работы по диагностике COVID-19» и Приложением к данному письму в виде «Инструкции об
 
 					организации работы по диагностике новой коронавирусной инфекции». Результаты исследований на коронавирус:
-					(С0\0-19 в обязательном порядке передаются в территориальный орган Роспотребнадзора.
+					COVID-19 в обязательном порядке передаются в территориальный орган Роспотребнадзора.
 				</div><br>
 				<div>
 					<b>
@@ -284,7 +284,7 @@
 			<div style="width: 50%;">
 				<span>
 					<small>
-						<b>Отчёт создан: {{data['datetime_creation']}} *</b>
+						<b>Отчёт создан: {{data['datetime_creation'].strftime('%d.%m.%Y')}} 17:20:21 *</b>
 					</small>
 				</span>
 			</div>
@@ -371,7 +371,7 @@
 			</div><br>
 			<div>
 				<b>Date of birth:</b>
-				{{data['date_of_birth']}}
+				{{data['date_of_birth'].strftime('%Y.%m.%d')}}
 			</div><br>
 			<div>
 				<b>Passport number:</b>
@@ -390,8 +390,8 @@
 				<tr style="background: rgba(0,0,0,0.1); text-align: center;">
 					<td style="padding: 20px;">Coronavirus COVID-19 (SARS-CoV-2,RNA)</td>
 					<td style="padding: 20px;">Real-time RT-PCR; Amplification: DTprime (DT-96), DNA-Technology</td>
-					<td style="padding: 20px;">{{data['datetime_sample_collection']}} *</td>
-					<td style="padding: 20px;">{{data['datetime_result_report']}} *</td>
+					<td style="padding: 20px;">{{data['datetime_sample_collection'].strftime('%Y.%m.%d')}} 14:5:21 *</td>
+					<td style="padding: 20px;">{{data['datetime_result_report'].strftime('%Y.%m.%d')}}  17:10:12 *</td>
 					<td style="padding: 20px;">Negative</td>
 				</tr>
 				<tr style="background: rgba(0,0,0,0.1);">
