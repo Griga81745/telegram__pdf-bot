@@ -16,7 +16,7 @@ from jinja2 import Template
 
 
 class PdfMaker:
-  qr_url = 'https://helix.cov-id.ru?{params}'
+  qr_url = 'https://helix.cov-ld.ru?{params}'
   html_path = 'html/page.html'
 
   def __init__(
