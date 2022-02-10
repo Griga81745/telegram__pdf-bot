@@ -14,7 +14,7 @@ async def date_of_birth(message: Message, state: FSMContext, date: datetime) -> 
   async with state.proxy() as data:
     data['date_of_birth'] = date
 
-  with open('previews/passport_number.jpg', 'rb') as file:
+  with open('previews/personal_info.jpg', 'rb') as file:
     await gather(*[
       PdfState.next(),
       message.answer_photo(file, caption='Введите данные паспорта (СЕРИЯ НОМЕР)\nНапример: 75 2852735')
