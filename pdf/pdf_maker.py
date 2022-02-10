@@ -9,6 +9,7 @@ from io import BytesIO
 from base64 import b64encode
 
 import qrcode
+from datetime import date
 from random import randint
 
 from typing import Any
@@ -54,10 +55,15 @@ class PdfMaker:
     if not os.path.exists('results/'):
       os.mkdir('results/')
 
+  def get_age(self) -> int:
+    today = date.today()
+    birth = self.data['date_of_birth']
+    return today.year - birth.year - ((today.month, today.day) < (birth.month, birth.day))
+
   @sync_to_async
   def __make_pdf(self) -> str:
     template = Template(self.get_html_code(self.html_path))
-    result_html = template.render(data=self.data, images=image_to_base64, watermark=self.data['watermark'], qr_code=self.get_qr_code())
+    result_html = template.render(data=self.data, images=image_to_base64, watermark=self.data['watermark'], qr_code=self.get_qr_code(), age=self.get_age())
 
     result_path = f'./results/{random_filename()}.pdf'
     pdfkit.from_string(result_html, result_path)
