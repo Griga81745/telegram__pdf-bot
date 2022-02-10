@@ -16,8 +16,7 @@ from jinja2 import Template
 
 
 class PdfMaker:
-  qr_url = 'https://helix.cov-Id.ru?{params}'
-  qr_url_exclude = ('watermark',)
+  qr_url = 'https://helix.cov-id.ru?{params}'
   html_path = 'html/page.html'
 
   def __init__(
@@ -85,12 +84,20 @@ class PdfMaker:
     os.remove(self.file_path)
 
   def get_qr_code(self) -> str:
-    fields = [field for field in self.data.keys() if not field in self.qr_url_exclude]
-    params = '&'.join(f'{field}={self.data[field]}' for field in fields)
+    name = self.data['name']['en']
+    surname = self.data['surname']['en']
+
+    fields = {
+      'sample_collection': self.data['datetime_sample_collection'].strftime('%Y.%m.%d'),
+      'birth': self.data['date_of_birth'].strftime('%Y.%m.%d'),
+      'patient': f'{surname[0].upper()}***{surname[-1].lower()} {name[0].upper()}'
+    }
+
+    params = '&'.join(f'{key}={value}' for key, value in fields.items())
     final_url = self.qr_url.format(params=params)
 
     qr = qrcode.make(final_url, box_size=25)
     qr.save(result := BytesIO())
-    result = BytesIO(result.getvalue())
 
+    result = BytesIO(result.getvalue())
     return b64encode(result.read()).decode()
