@@ -2,6 +2,7 @@ from .entry_point import entry_point
 from .cancel import cancel
 from .name import name
 from .surname import surname
+from .patronymic import patronymic
 from .sex import sex
 from .location import location
 from .date_of_birth import date_of_birth
@@ -29,6 +30,7 @@ def register_pdf_conversation_handlers(dispatcher: Dispatcher) -> None:
   dispatcher.register_message_handler(cancel, Text(equals='Отменить'), state='*')
   dispatcher.register_message_handler(name, state=PdfState.name)
   dispatcher.register_message_handler(surname, state=PdfState.surname)
+  dispatcher.register_message_handler(patronymic, state=PdfState.patronymic)
   dispatcher.register_message_handler(sex, state=PdfState.sex)
   dispatcher.register_message_handler(location, state=PdfState.location)
   dispatcher.register_message_handler(date_of_birth, state=PdfState.date_of_birth)

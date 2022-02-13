@@ -16,6 +16,7 @@ class Updates:
   fields = {
     'имя': 'name',
     'фамилия': 'surname',
+    'отчество': 'patronymic',
     'пол': 'sex',
     'адрес': 'location',
     'дата рождения': 'date_of_birth',
@@ -67,6 +68,18 @@ class Updates:
       }
 
     await message.answer('Фамилия обновлена')
+
+  async def label_patronymic(self) -> None:
+    await self.message.answer('Введите новое отчество')
+
+  async def update_patronymic(self, message: Message, state: FSMContext) -> None:
+    async with state.proxy() as data:
+      data['patronymic'] = {
+        'ru': message.text.title(),
+        'en': translit_to_english(message.text).title()
+      }
+
+    await message.answer('Отчество обновлено')
 
   async def label_sex(self) -> None:
     await self.message.answer('Выберете пол', reply_markup=sex_keyboard())
@@ -123,7 +136,7 @@ class Updates:
       if message_text == 'Сейчас':
         date = datetime.now()
 
-      elif not (date := validate_date(message_text, '%Y.%m.%d')):
+      elif not (date := validate_date(message_text, '%Y.%m.%d %H:%M')):
         data['what_to_update'] = 'datetime_creation'
         return await message.answer('Неверный формат')
 
@@ -140,7 +153,7 @@ class Updates:
       if message_text == 'Сейчас':
         date = datetime.now()
 
-      elif not (date := validate_date(message_text, '%Y.%m.%d')):
+      elif not (date := validate_date(message_text, '%Y.%m.%d %H:%M')):
         data['what_to_update'] = 'datetime_sample_collection'
         return await message.answer('Неверный формат')
 
@@ -157,7 +170,7 @@ class Updates:
       if message_text == 'Сейчас':
         date = datetime.now()
 
-      elif not (date := validate_date(message_text, '%Y.%m.%d')):
+      elif not (date := validate_date(message_text, '%Y.%m.%d %H:%M')):
         data['what_to_update'] = 'datetime_result_report'
         return await message.answer('Неверный формат')
 
@@ -174,7 +187,7 @@ class Updates:
       if message_text == 'Сейчас':
         date = datetime.now()
 
-      elif not (date := validate_date(message_text, '%Y.%m.%d')):
+      elif not (date := validate_date(message_text, '%Y.%m.%d %H:%M')):
         data['what_to_update'] = 'datetime_registration'
         return await message.answer('Неверный формат')
 
